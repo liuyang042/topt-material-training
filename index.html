@@ -9,9 +9,6 @@
     <link rel="preconnect" href="https://fonts.gstatic.com" crossorigin>
     <link href="https://fonts.googleapis.com/css2?family=Inter:opsz,wght@14..32,400;14..32,500;14..32,600;14..32,700&display=swap" rel="stylesheet">
     <link rel="stylesheet" href="https://cdnjs.cloudflare.com/ajax/libs/font-awesome/6.0.0-beta3/css/all.min.css">
-    <!-- PDF 导出所需库 -->
-    <script src="https://cdnjs.cloudflare.com/ajax/libs/html2canvas/1.4.1/html2canvas.min.js"></script>
-    <script src="https://cdnjs.cloudflare.com/ajax/libs/jspdf/2.5.1/jspdf.umd.min.js"></script>
     <style>
         * {
             margin: 0;
@@ -454,54 +451,6 @@
             font-weight: 600;
         }
 
-        /* ===== 导出按钮样式 ===== */
-        .export-btn {
-            background: linear-gradient(135deg, #1f4b6e, #0b2b4a);
-            color: white;
-            padding: 10px 24px;
-            border-radius: 40px;
-            border: none;
-            font-weight: 600;
-            font-size: 0.9rem;
-            cursor: pointer;
-            transition: all 0.3s ease;
-            display: inline-flex;
-            align-items: center;
-            gap: 10px;
-            box-shadow: 0 4px 15px rgba(31, 75, 110, 0.3);
-            font-family: 'Inter', sans-serif;
-        }
-
-        .export-btn:hover {
-            transform: translateY(-2px);
-            box-shadow: 0 8px 25px rgba(31, 75, 110, 0.4);
-        }
-
-        .export-btn:active {
-            transform: translateY(0);
-        }
-
-        .export-btn i {
-            font-size: 1.1rem;
-        }
-
-        .export-btn .spinner {
-            display: none;
-            animation: spin 0.8s linear infinite;
-        }
-
-        .export-btn.loading .spinner {
-            display: inline-block;
-        }
-
-        .export-btn.loading .btn-text {
-            display: none;
-        }
-
-        @keyframes spin {
-            to { transform: rotate(360deg); }
-        }
-
         /* ===== 步骤导航侧边栏 ===== */
         .step-nav {
             position: fixed;
@@ -630,136 +579,6 @@
             to { transform: scale(1); opacity: 1; }
         }
 
-        /* ===== 密码弹窗样式 ===== */
-        .password-modal {
-            position: fixed;
-            top: 0;
-            left: 0;
-            right: 0;
-            bottom: 0;
-            background: rgba(0, 0, 0, 0.7);
-            backdrop-filter: blur(8px);
-            display: none;
-            justify-content: center;
-            align-items: center;
-            z-index: 9998;
-        }
-
-        .password-modal.active {
-            display: flex;
-        }
-
-        .password-box {
-            background: white;
-            padding: 40px;
-            border-radius: 32px;
-            max-width: 420px;
-            width: 90%;
-            box-shadow: 0 30px 60px rgba(0, 0, 0, 0.3);
-            animation: zoomIn 0.3s ease;
-        }
-
-        .password-box h3 {
-            font-size: 1.3rem;
-            color: #0b2b4a;
-            margin-bottom: 8px;
-        }
-
-        .password-box p {
-            color: #5a7a95;
-            font-size: 0.9rem;
-            margin-bottom: 20px;
-        }
-
-        .password-box input {
-            width: 100%;
-            padding: 12px 16px;
-            border: 2px solid #dce6f2;
-            border-radius: 16px;
-            font-size: 1rem;
-            font-family: 'Inter', sans-serif;
-            transition: border-color 0.3s ease;
-            outline: none;
-        }
-
-        .password-box input:focus {
-            border-color: #1f4b6e;
-        }
-
-        .password-box .btn-group {
-            display: flex;
-            gap: 12px;
-            margin-top: 16px;
-        }
-
-        .password-box .btn-group button {
-            flex: 1;
-            padding: 12px;
-            border: none;
-            border-radius: 16px;
-            font-size: 0.95rem;
-            font-weight: 600;
-            cursor: pointer;
-            transition: all 0.3s ease;
-            font-family: 'Inter', sans-serif;
-        }
-
-        .password-box .btn-confirm {
-            background: #1f4b6e;
-            color: white;
-        }
-
-        .password-box .btn-confirm:hover {
-            background: #0b2b4a;
-        }
-
-        .password-box .btn-cancel {
-            background: #eef3fa;
-            color: #4f6a85;
-        }
-
-        .password-box .btn-cancel:hover {
-            background: #dce6f2;
-        }
-
-        .password-box .error-msg {
-            color: #d32f2f;
-            font-size: 0.85rem;
-            margin-top: 8px;
-            display: none;
-        }
-
-        .password-box .error-msg.show {
-            display: block;
-        }
-
-        /* ===== PDF 导出进度提示 ===== */
-        .export-progress {
-            position: fixed;
-            bottom: 30px;
-            left: 50%;
-            transform: translateX(-50%);
-            background: #1f4b6e;
-            color: white;
-            padding: 12px 30px;
-            border-radius: 40px;
-            font-weight: 600;
-            font-size: 0.95rem;
-            box-shadow: 0 8px 30px rgba(0, 0, 0, 0.2);
-            z-index: 9997;
-            display: none;
-            align-items: center;
-            gap: 12px;
-        }
-
-        .export-progress.show {
-            display: flex;
-        }
-
-        .export-progress .progress-spinner {
-            animation: spin 0.8s linear infinite;
-        }
-
         /* ===== 深色模式 ===== */
         @media (prefers-color-scheme: dark) {
             body {
@@ -853,27 +672,6 @@
             .toc-list li {
                 color: #b8c8d8;
             }
-            .password-box {
-                background: #1a2a3f;
-            }
-            .password-box h3 {
-                color: #b8c8d8;
-            }
-            .password-box p {
-                color: #8a9ab0;
-            }
-            .password-box input {
-                background: #0d1b2a;
-                border-color: #2a3f5a;
-                color: #e8edf3;
-            }
-            .password-box .btn-cancel {
-                background: #1e3145;
-                color: #b8c8d8;
-            }
-            .export-progress {
-                background: #0b2b4a;
-            }
         }
 
         /* ===== 移动端优化 ===== */
@@ -922,26 +720,12 @@
             .step-nav .nav-dot .tooltip {
                 display: none;
             }
-            .export-btn {
-                padding: 8px 16px;
-                font-size: 0.8rem;
-            }
             .lightbox-close {
                 top: 20px;
                 right: 20px;
                 width: 40px;
                 height: 40px;
                 font-size: 24px;
-            }
-            .password-box {
-                padding: 24px;
-            }
-            .export-progress {
-                bottom: 20px;
-                padding: 10px 20px;
-                font-size: 0.85rem;
-                width: 90%;
-                justify-content: center;
             }
         }
 
@@ -961,10 +745,7 @@
         /* ===== 打印样式 ===== */
         @media print {
             .step-nav,
-            .lightbox-overlay,
-            .export-btn,
-            .password-modal,
-            .export-progress {
+            .lightbox-overlay {
                 display: none !important;
             }
             .container {
@@ -1016,14 +797,9 @@
         </div>
     </div>
 
-    <!-- 目录 + 导出按钮 -->
-    <div class="toc" style="justify-content: space-between;">
+    <!-- 目录 -->
+    <div class="toc">
         <div class="toc-title"><i class="fas fa-list-ul"></i> 目录 <span>1 章节</span></div>
-        <button class="export-btn" id="exportBtn">
-            <i class="fas fa-file-pdf"></i>
-            <span class="btn-text">导出 PDF</span>
-            <i class="fas fa-spinner spinner"></i>
-        </button>
         <ul class="toc-list">
             <li>一、创建纬编物料主数据</li>
         </ul>
@@ -1170,26 +946,6 @@
 
 </div>
 
-<!-- ===== 密码验证弹窗 ===== -->
-<div class="password-modal" id="passwordModal">
-    <div class="password-box">
-        <h3><i class="fas fa-lock" style="color:#1f4b6e;"></i> PDF 导出验证</h3>
-        <p>请输入密码以导出 PDF 文档</p>
-        <input type="password" id="passwordInput" placeholder="请输入密码..." autocomplete="off">
-        <div class="error-msg" id="errorMsg"><i class="fas fa-exclamation-circle"></i> 密码错误，请重试</div>
-        <div class="btn-group">
-            <button class="btn-cancel" id="cancelPwd">取消</button>
-            <button class="btn-confirm" id="confirmPwd">确认导出</button>
-        </div>
-    </div>
-</div>
-
-<!-- ===== 导出进度提示 ===== -->
-<div class="export-progress" id="exportProgress">
-    <i class="fas fa-spinner progress-spinner"></i>
-    <span>正在生成 PDF，请稍候...</span>
-</div>
-
 <!-- ===== Lightbox 容器 ===== -->
 <div class="lightbox-overlay" id="lightbox">
     <div class="lightbox-close" id="lightboxClose">✕</div>
@@ -1300,208 +1056,6 @@
     });
 
     setTimeout(updateActiveStep, 100);
-})();
-
-// ============================================
-// 3. PDF 导出功能（带密码验证）
-// ============================================
-(function() {
-    const PASSWORD = 'zuiaiyani1314';
-    const exportBtn = document.getElementById('exportBtn');
-    const passwordModal = document.getElementById('passwordModal');
-    const passwordInput = document.getElementById('passwordInput');
-    const errorMsg = document.getElementById('errorMsg');
-    const confirmBtn = document.getElementById('confirmPwd');
-    const cancelBtn = document.getElementById('cancelPwd');
-    const exportProgress = document.getElementById('exportProgress');
-
-    // 显示密码弹窗
-    function showPasswordModal() {
-        passwordModal.classList.add('active');
-        passwordInput.value = '';
-        errorMsg.classList.remove('show');
-        setTimeout(() => passwordInput.focus(), 100);
-    }
-
-    // 隐藏密码弹窗
-    function hidePasswordModal() {
-        passwordModal.classList.remove('active');
-        passwordInput.value = '';
-        errorMsg.classList.remove('show');
-    }
-
-    // 显示进度
-    function showProgress() {
-        exportProgress.classList.add('show');
-    }
-
-    // 隐藏进度
-    function hideProgress() {
-        exportProgress.classList.remove('show');
-    }
-
-    // 等待图片加载完成
-    function waitForImages() {
-        const images = document.querySelectorAll('.img-card img');
-        const promises = [];
-
-        images.forEach(img => {
-            if (!img.complete || img.naturalHeight === 0) {
-                promises.push(new Promise((resolve) => {
-                    img.onload = () => resolve();
-                    img.onerror = () => resolve();
-                    // 超时保护
-                    setTimeout(resolve, 5000);
-                }));
-            }
-        });
-
-        return Promise.all(promises);
-    }
-
-    // 执行PDF导出
-    async function doExport() {
-        const btn = document.getElementById('exportBtn');
-        const container = document.querySelector('.container');
-        const nav = document.getElementById('stepNav');
-
-        btn.classList.add('loading');
-        btn.disabled = true;
-        showProgress();
-
-        try {
-            // 隐藏导航
-            if (nav) nav.style.display = 'none';
-            hidePasswordModal();
-
-            // 等待所有图片加载完成
-            await waitForImages();
-            await new Promise(resolve => setTimeout(resolve, 300));
-
-            // 添加打印优化样式
-            const style = document.createElement('style');
-            style.id = 'pdfStyle';
-            style.textContent = `
-                .step-nav, .lightbox-overlay, .export-btn, .password-modal, .export-progress { display: none !important; }
-                .img-card { break-inside: avoid; page-break-inside: avoid; }
-                .step-desc { break-inside: avoid; page-break-inside: avoid; }
-                .section { break-inside: avoid; page-break-inside: avoid; }
-                .container { box-shadow: none !important; border-radius: 0 !important; padding: 40px !important; }
-                body { background: white !important; padding: 0 !important; }
-                .step-desc { background: #f8faff !important; }
-                .note-box { background: #fcf4e8 !important; }
-                .img-card { background: #f8fafc !important; }
-                .img-card img { max-width: 100%; display: block; }
-            `;
-            document.head.appendChild(style);
-
-            window.scrollTo(0, 0);
-            await new Promise(resolve => setTimeout(resolve, 300));
-
-            // 使用 html2canvas 捕获
-            const canvas = await html2canvas(container, {
-                scale: 2,
-                useCORS: true,
-                allowTaint: true,
-                logging: false,
-                backgroundColor: '#ffffff',
-                windowHeight: container.scrollHeight,
-                windowWidth: container.scrollWidth,
-                imageTimeout: 15000,
-                removeContainer: false,
-                onclone: (document, element) => {
-                    // 确保图片正常显示
-                    const clonedImages = element.querySelectorAll('img');
-                    clonedImages.forEach(img => {
-                        img.style.display = 'block';
-                        img.style.maxWidth = '100%';
-                        img.style.height = 'auto';
-                        // 确保图片加载
-                        if (!img.complete) {
-                            img.src = img.src;
-                        }
-                    });
-                }
-            });
-
-            // 移除临时样式
-            document.getElementById('pdfStyle')?.remove();
-            if (nav) nav.style.display = '';
-
-            // 生成 PDF
-            const imgData = canvas.toDataURL('image/png', 1.0);
-            const pdf = new jspdf.jsPDF('p', 'mm', 'a4');
-
-            const pageWidth = 210;
-            const pageHeight = 297;
-            const margin = 10;
-            const contentWidth = pageWidth - margin * 2;
-
-            const imgWidth = canvas.width;
-            const imgHeight = canvas.height;
-            const ratio = Math.min(contentWidth / imgWidth, (pageHeight - margin * 2) / imgHeight);
-
-            const finalWidth = imgWidth * ratio;
-            const finalHeight = imgHeight * ratio;
-            const xOffset = (pageWidth - finalWidth) / 2;
-            const yOffset = (pageHeight - finalHeight) / 2;
-
-            pdf.addImage(imgData, 'PNG', xOffset, yOffset, finalWidth, finalHeight);
-            pdf.save('TOPT-物料主数据培训教材.pdf');
-
-        } catch (error) {
-            console.error('导出失败:', error);
-            alert('导出失败，请重试。错误信息：' + error.message);
-        } finally {
-            btn.classList.remove('loading');
-            btn.disabled = false;
-            hideProgress();
-        }
-    }
-
-    // 点击导出按钮 → 显示密码弹窗
-    exportBtn.addEventListener('click', function(e) {
-        e.preventDefault();
-        showPasswordModal();
-    });
-
-    // 确认密码
-    confirmBtn.addEventListener('click', function() {
-        const inputPwd = passwordInput.value;
-        if (inputPwd === PASSWORD) {
-            doExport();
-        } else {
-            errorMsg.classList.add('show');
-            passwordInput.value = '';
-            passwordInput.focus();
-            setTimeout(() => {
-                errorMsg.classList.remove('show');
-            }, 3000);
-        }
-    });
-
-    // 取消
-    cancelBtn.addEventListener('click', hidePasswordModal);
-
-    // 回车确认 / ESC取消
-    passwordInput.addEventListener('keydown', function(e) {
-        if (e.key === 'Enter') {
-            confirmBtn.click();
-        }
-        if (e.key === 'Escape') {
-            hidePasswordModal();
-        }
-    });
-
-    // 点击背景关闭
-    passwordModal.addEventListener('click', function(e) {
-        if (e.target === this) {
-            hidePasswordModal();
-        }
-    });
-
-    // 暴露给全局（备用）
-    window.exportToPDF = doExport;
 })();
 </script>
 
