@@ -4,7 +4,7 @@
     <meta charset="UTF-8">
     <meta name="viewport" content="width=device-width, initial-scale=1.0">
     <title>TOPT · 创建纬编物料主数据 · 培训教材</title>
-    <!-- Inter 字体与 Font Awesome 图标库 (提升视觉层次) -->
+    <!-- Inter 字体与 Font Awesome 图标库 -->
     <link rel="preconnect" href="https://fonts.googleapis.com">
     <link rel="preconnect" href="https://fonts.gstatic.com" crossorigin>
     <link href="https://fonts.googleapis.com/css2?family=Inter:opsz,wght@14..32,400;14..32,500;14..32,600;14..32,700&display=swap" rel="stylesheet">
@@ -44,7 +44,7 @@
             backdrop-filter: blur(1px);
         }
 
-        /* 头部 — 增加logo和作者 */
+        /* 头部 */
         .header {
             border-bottom: 2px solid #eaf0f7;
             padding-bottom: 1.6rem;
@@ -387,11 +387,12 @@
             height: auto;
             border-radius: 14px;
             border: 1px solid #dce6f2;
-            background: white;
+            background: #f0f4fa;
             display: block;
             margin-bottom: 6px;
             transition: all 0.3s ease;
             cursor: pointer;
+            min-height: 100px;
         }
 
         .img-card .img-caption {
@@ -453,7 +454,7 @@
             font-weight: 600;
         }
 
-        /* ===== 新增：导出按钮样式 ===== */
+        /* ===== 导出按钮样式 ===== */
         .export-btn {
             background: linear-gradient(135deg, #1f4b6e, #0b2b4a);
             color: white;
@@ -501,7 +502,7 @@
             to { transform: rotate(360deg); }
         }
 
-        /* ===== 新增：步骤导航侧边栏 ===== */
+        /* ===== 步骤导航侧边栏 ===== */
         .step-nav {
             position: fixed;
             right: 30px;
@@ -565,7 +566,7 @@
             right: 28px;
         }
 
-        /* ===== 新增：Lightbox 样式 ===== */
+        /* ===== Lightbox 样式 ===== */
         .lightbox-overlay {
             position: fixed;
             top: 0;
@@ -629,7 +630,7 @@
             to { transform: scale(1); opacity: 1; }
         }
 
-        /* ===== 新增：密码弹窗样式 ===== */
+        /* ===== 密码弹窗样式 ===== */
         .password-modal {
             position: fixed;
             top: 0;
@@ -732,6 +733,33 @@
             display: block;
         }
 
+        /* ===== PDF 导出进度提示 ===== */
+        .export-progress {
+            position: fixed;
+            bottom: 30px;
+            left: 50%;
+            transform: translateX(-50%);
+            background: #1f4b6e;
+            color: white;
+            padding: 12px 30px;
+            border-radius: 40px;
+            font-weight: 600;
+            font-size: 0.95rem;
+            box-shadow: 0 8px 30px rgba(0, 0, 0, 0.2);
+            z-index: 9997;
+            display: none;
+            align-items: center;
+            gap: 12px;
+        }
+
+        .export-progress.show {
+            display: flex;
+        }
+
+        .export-progress .progress-spinner {
+            animation: spin 0.8s linear infinite;
+        }
+
         /* ===== 深色模式 ===== */
         @media (prefers-color-scheme: dark) {
             body {
@@ -757,6 +785,7 @@
             }
             .img-card img {
                 border-color: #2a3f5a;
+                background: #0d1b2a;
             }
             .toc {
                 background: #1a2a3f;
@@ -842,6 +871,9 @@
                 background: #1e3145;
                 color: #b8c8d8;
             }
+            .export-progress {
+                background: #0b2b4a;
+            }
         }
 
         /* ===== 移动端优化 ===== */
@@ -904,6 +936,13 @@
             .password-box {
                 padding: 24px;
             }
+            .export-progress {
+                bottom: 20px;
+                padding: 10px 20px;
+                font-size: 0.85rem;
+                width: 90%;
+                justify-content: center;
+            }
         }
 
         @media (max-width: 480px) {
@@ -924,7 +963,8 @@
             .step-nav,
             .lightbox-overlay,
             .export-btn,
-            .password-modal {
+            .password-modal,
+            .export-progress {
                 display: none !important;
             }
             .container {
@@ -954,11 +994,11 @@
 <body>
 <div class="container">
 
-    <!-- 页眉：LOGO + 标题 + 作者信息 -->
+    <!-- 页眉 -->
     <div class="header">
         <div class="header-brand">
             <div class="logo-wrap">
-                <img src="https://github.com/liuyang042/topt-material-training/blob/main/logo.png?raw=true" alt="TOPT Logo">
+                <img src="https://github.com/liuyang042/topt-material-training/blob/main/logo.png?raw=true" alt="TOPT Logo" crossorigin="anonymous">
                 <span class="brand-text">TOPT</span>
             </div>
             <div class="header-left">
@@ -1004,11 +1044,11 @@
             </div>
             <div class="img-grid">
                 <div class="img-card">
-                    <img src="https://github.com/liuyang042/topt-material-training/blob/main/assets/1-1-1.png?raw=true" alt="图1-1-1 布号编码规则" loading="lazy">
+                    <img src="https://github.com/liuyang042/topt-material-training/blob/main/assets/1-1-1.png?raw=true" alt="图1-1-1 布号编码规则" loading="lazy" crossorigin="anonymous">
                     <div><span class="code-tag"><i class="fas fa-table"></i> 规则表</span> <span class="img-caption">图 1-1-1 布号编码规则</span></div>
                 </div>
                 <div class="img-card">
-                    <img src="https://github.com/liuyang042/topt-material-training/blob/main/assets/1-1-2ZSOHCS008.png?raw=true" alt="图1-1-2 ZSOHCS008" loading="lazy">
+                    <img src="https://github.com/liuyang042/topt-material-training/blob/main/assets/1-1-2ZSOHCS008.png?raw=true" alt="图1-1-2 ZSOHCS008" loading="lazy" crossorigin="anonymous">
                     <div><span class="code-tag"><i class="fas fa-calculator"></i> ZSOHCS008</span> <span class="img-caption">图 1-1-2 新布号计算器</span></div>
                 </div>
             </div>
@@ -1020,7 +1060,7 @@
             </div>
             <div class="img-grid">
                 <div class="img-card">
-                    <img src="https://github.com/liuyang042/topt-material-training/blob/main/assets/1-1-3ZSOHVT001.png?raw=true" alt="图1-1-3 ZSOHVT001" loading="lazy">
+                    <img src="https://github.com/liuyang042/topt-material-training/blob/main/assets/1-1-3ZSOHVT001.png?raw=true" alt="图1-1-3 ZSOHVT001" loading="lazy" crossorigin="anonymous">
                     <div><span class="code-tag"><i class="fas fa-code-branch"></i> K0010</span> <span class="img-caption">图 1-1-3 ZSOHVT001</span></div>
                 </div>
             </div>
@@ -1032,11 +1072,11 @@
             </div>
             <div class="img-grid">
                 <div class="img-card">
-                    <img src="https://github.com/liuyang042/topt-material-training/blob/main/assets/1-1-4ZSOHCS200C.png?raw=true" alt="图1-1-4 ZSOHCS200C" loading="lazy">
+                    <img src="https://github.com/liuyang042/topt-material-training/blob/main/assets/1-1-4ZSOHCS200C.png?raw=true" alt="图1-1-4 ZSOHCS200C" loading="lazy" crossorigin="anonymous">
                     <div><span class="code-tag"><i class="fas fa-file-import"></i> 导入</span><span class="img-caption">图 1-1-4 ZSOHCS200C</span></div>
                 </div>
                 <div class="img-card">
-                    <img src="https://github.com/liuyang042/topt-material-training/blob/main/assets/1-1-5.png?raw=true" alt="图1-1-5 编码变更提示" loading="lazy">
+                    <img src="https://github.com/liuyang042/topt-material-training/blob/main/assets/1-1-5.png?raw=true" alt="图1-1-5 编码变更提示" loading="lazy" crossorigin="anonymous">
                     <div><span class="code-tag"><i class="fas fa-sync-alt"></i> TORAY</span><span class="img-caption">图 1-1-5 年度更新提示</span></div>
                 </div>
             </div>
@@ -1047,7 +1087,7 @@
             </div>
             <div class="img-grid">
                 <div class="img-card">
-                    <img src="https://github.com/liuyang042/topt-material-training/blob/main/assets/1-1-6ZSOHPP024.png?raw=true" alt="图1-1-6 ZSOHPP024" loading="lazy">
+                    <img src="https://github.com/liuyang042/topt-material-training/blob/main/assets/1-1-6ZSOHPP024.png?raw=true" alt="图1-1-6 ZSOHPP024" loading="lazy" crossorigin="anonymous">
                     <div><span class="code-tag"><i class="fas fa-print"></i> 板卡打印</span><span class="img-caption">图 1-1-6 ZSOHPP024</span></div>
                 </div>
             </div>
@@ -1062,7 +1102,7 @@
             </div>
             <div class="img-grid">
                 <div class="img-card">
-                    <img src="https://github.com/liuyang042/topt-material-training/blob/main/assets/1-1-9.png?raw=true" alt="图1-1-9 K0041" loading="lazy">
+                    <img src="https://github.com/liuyang042/topt-material-training/blob/main/assets/1-1-9.png?raw=true" alt="图1-1-9 K0041" loading="lazy" crossorigin="anonymous">
                     <div><span class="code-tag">K0041</span> <span class="img-caption">图 1-1-9</span></div>
                 </div>
             </div>
@@ -1072,7 +1112,7 @@
             </div>
             <div class="img-grid">
                 <div class="img-card">
-                    <img src="https://github.com/liuyang042/topt-material-training/blob/main/assets/1-1-10.png?raw=true" alt="图1-1-10 K0040" loading="lazy">
+                    <img src="https://github.com/liuyang042/topt-material-training/blob/main/assets/1-1-10.png?raw=true" alt="图1-1-10 K0040" loading="lazy" crossorigin="anonymous">
                     <div><span class="code-tag">K0040</span> <span class="img-caption">图 1-1-10</span></div>
                 </div>
             </div>
@@ -1085,11 +1125,11 @@
             </div>
             <div class="img-grid">
                 <div class="img-card">
-                    <img src="https://github.com/liuyang042/topt-material-training/blob/main/assets/1-1-11ZSOHPP106.png?raw=true" alt="图1-1-11 ZSOHPP106" loading="lazy">
+                    <img src="https://github.com/liuyang042/topt-material-training/blob/main/assets/1-1-11ZSOHPP106.png?raw=true" alt="图1-1-11 ZSOHPP106" loading="lazy" crossorigin="anonymous">
                     <div><span class="code-tag"><i class="fas fa-vector-square"></i> 模数维护</span><span class="img-caption">图 1-1-11 ZSOHPP106</span></div>
                 </div>
                 <div class="img-card">
-                    <img src="https://github.com/liuyang042/topt-material-training/blob/main/assets/1-1-12ZSOHPP106.png?raw=true" alt="图1-1-12 ZSOHPP106" loading="lazy">
+                    <img src="https://github.com/liuyang042/topt-material-training/blob/main/assets/1-1-12ZSOHPP106.png?raw=true" alt="图1-1-12 ZSOHPP106" loading="lazy" crossorigin="anonymous">
                     <div><span class="code-tag"><i class="fas fa-print"></i> 模数纸</span><span class="img-caption">图 1-1-12 ZSOHPP106</span></div>
                 </div>
             </div>
@@ -1110,11 +1150,11 @@
             <h3><i class="fas fa-sliders-h" style="color:#3a6b8f;"></i> 纬编物料主数据 · 相关配置</h3>
             <div class="img-grid">
                 <div class="img-card">
-                    <img src="https://github.com/liuyang042/topt-material-training/blob/main/assets/1-1-7.png?raw=true" alt="图1-1-7 配置界面" loading="lazy">
+                    <img src="https://github.com/liuyang042/topt-material-training/blob/main/assets/1-1-7.png?raw=true" alt="图1-1-7 配置界面" loading="lazy" crossorigin="anonymous">
                     <div><span class="code-tag"><i class="fas fa-cog"></i> 纬编配置</span><span class="img-caption">图 1-1-7</span></div>
                 </div>
                 <div class="img-card">
-                    <img src="https://github.com/liuyang042/topt-material-training/blob/main/assets/1-1-8.png?raw=true" alt="图1-1-8 配置参数" loading="lazy">
+                    <img src="https://github.com/liuyang042/topt-material-training/blob/main/assets/1-1-8.png?raw=true" alt="图1-1-8 配置参数" loading="lazy" crossorigin="anonymous">
                     <div><span class="code-tag"><i class="fas fa-sliders-h"></i> 纬编参数</span><span class="img-caption">图 1-1-8</span></div>
                 </div>
             </div>
@@ -1130,7 +1170,7 @@
 
 </div>
 
-<!-- ===== 新增：密码验证弹窗 ===== -->
+<!-- ===== 密码验证弹窗 ===== -->
 <div class="password-modal" id="passwordModal">
     <div class="password-box">
         <h3><i class="fas fa-lock" style="color:#1f4b6e;"></i> PDF 导出验证</h3>
@@ -1144,7 +1184,13 @@
     </div>
 </div>
 
-<!-- ===== 新增：Lightbox 容器 ===== -->
+<!-- ===== 导出进度提示 ===== -->
+<div class="export-progress" id="exportProgress">
+    <i class="fas fa-spinner progress-spinner"></i>
+    <span>正在生成 PDF，请稍候...</span>
+</div>
+
+<!-- ===== Lightbox 容器 ===== -->
 <div class="lightbox-overlay" id="lightbox">
     <div class="lightbox-close" id="lightboxClose">✕</div>
     <img id="lightboxImg" src="" alt="放大图片">
@@ -1153,7 +1199,51 @@
 <!-- ===== JavaScript 功能 ===== -->
 <script>
 // ============================================
-// 1. 图片放大功能 (Lightbox)
+// 1. 图片预加载（解决 PDF 导出图片问题）
+// ============================================
+(function() {
+    // 预加载所有图片，确保它们被缓存
+    const images = document.querySelectorAll('.img-card img');
+    const imageUrls = [];
+
+    images.forEach(img => {
+        // 如果图片还未加载，则预加载
+        if (!img.complete) {
+            imageUrls.push(img.src);
+        }
+    });
+
+    // 如果有未加载的图片，预加载它们
+    if (imageUrls.length > 0) {
+        imageUrls.forEach(url => {
+            const preloadImg = new Image();
+            preloadImg.crossOrigin = 'anonymous';
+            preloadImg.src = url;
+        });
+    }
+
+    // 等待所有图片加载完成
+    window.waitForImages = function() {
+        const allImages = document.querySelectorAll('.img-card img');
+        const promises = [];
+
+        allImages.forEach(img => {
+            if (!img.complete) {
+                promises.push(new Promise((resolve) => {
+                    img.onload = resolve;
+                    img.onerror = resolve;
+                    // 设置超时，避免卡死
+                    setTimeout(resolve, 5000);
+                }));
+            }
+        });
+
+        return Promise.all(promises);
+    };
+})();
+
+// ============================================
+// 2. 图片放大功能 (Lightbox)
 // ============================================
 (function() {
     const images = document.querySelectorAll('.img-card img');
@@ -1188,7 +1278,7 @@
 })();
 
 // ============================================
-// 2. 步骤滚动高亮导航
+// 3. 步骤滚动高亮导航
 // ============================================
 (function() {
     const steps = document.querySelectorAll('.step-desc');
@@ -1257,7 +1347,7 @@
 })();
 
 // ============================================
-// 3. PDF 导出功能（带密码验证）
+// 4. PDF 导出功能（带密码验证 + 图片修复）
 // ============================================
 (function() {
     const PASSWORD = 'zuiaiyani1314';
@@ -1267,15 +1357,14 @@
     const errorMsg = document.getElementById('errorMsg');
     const confirmBtn = document.getElementById('confirmPwd');
     const cancelBtn = document.getElementById('cancelPwd');
-
-    let pendingExport = false;
+    const exportProgress = document.getElementById('exportProgress');
 
     // 显示密码弹窗
     function showPasswordModal() {
         passwordModal.classList.add('active');
         passwordInput.value = '';
         errorMsg.classList.remove('show');
-        passwordInput.focus();
+        setTimeout(() => passwordInput.focus(), 100);
     }
 
     // 隐藏密码弹窗
@@ -1283,6 +1372,43 @@
         passwordModal.classList.remove('active');
         passwordInput.value = '';
         errorMsg.classList.remove('show');
+    }
+
+    // 显示进度
+    function showProgress() {
+        exportProgress.classList.add('show');
+    }
+
+    // 隐藏进度
+    function hideProgress() {
+        exportProgress.classList.remove('show');
+    }
+
+    // 将图片转换为 Base64（解决跨域问题）
+    function imageToBase64(imgElement) {
+        return new Promise((resolve) => {
+            if (!imgElement) {
+                resolve(null);
+                return;
+            }
+
+            // 如果图片已经加载，使用 canvas 转换
+            try {
+                const canvas = document.createElement('canvas');
+                canvas.width = imgElement.naturalWidth || imgElement.width;
+                canvas.height = imgElement.naturalHeight || imgElement.height;
+                const ctx = canvas.getContext('2d');
+                
+                // 设置跨域
+                ctx.imageSmoothingEnabled = true;
+                ctx.drawImage(imgElement, 0, 0);
+                
+                resolve(canvas.toDataURL('image/png'));
+            } catch (e) {
+                // 如果转换失败，直接使用原始 src
+                resolve(imgElement.src);
+            }
+        });
     }
 
     // 执行PDF导出
@@ -1293,17 +1419,42 @@
 
         btn.classList.add('loading');
         btn.disabled = true;
+        showProgress();
 
         try {
             // 隐藏导航和弹窗
             if (nav) nav.style.display = 'none';
             hidePasswordModal();
 
+            // 等待所有图片加载完成
+            await window.waitForImages();
+            await new Promise(resolve => setTimeout(resolve, 500));
+
+            // 获取所有图片元素
+            const images = document.querySelectorAll('.img-card img');
+            
+            // 确保图片加载完成
+            const imagePromises = Array.from(images).map(img => {
+                if (img.complete && img.naturalHeight > 0) {
+                    return Promise.resolve();
+                }
+                return new Promise((resolve) => {
+                    img.onload = () => resolve();
+                    img.onerror = () => resolve();
+                    // 如果图片已加载但未触发事件
+                    if (img.complete && img.naturalHeight > 0) {
+                        resolve();
+                    }
+                    setTimeout(resolve, 3000);
+                });
+            });
+            await Promise.all(imagePromises);
+
             // 添加打印优化样式
             const style = document.createElement('style');
             style.id = 'pdfStyle';
             style.textContent = `
-                .step-nav, .lightbox-overlay, .export-btn, .password-modal { display: none !important; }
+                .step-nav, .lightbox-overlay, .export-btn, .password-modal, .export-progress { display: none !important; }
                 .img-card { break-inside: avoid; page-break-inside: avoid; }
                 .step-desc { break-inside: avoid; page-break-inside: avoid; }
                 .section { break-inside: avoid; page-break-inside: avoid; }
@@ -1312,37 +1463,41 @@
                 .step-desc { background: #f8faff !important; }
                 .note-box { background: #fcf4e8 !important; }
                 .img-card { background: #f8fafc !important; }
-                .img-card img { max-width: 100%; }
+                .img-card img { max-width: 100%; display: block; }
             `;
             document.head.appendChild(style);
 
             window.scrollTo(0, 0);
             await new Promise(resolve => setTimeout(resolve, 300));
 
+            // 使用 html2canvas 捕获
             const canvas = await html2canvas(container, {
                 scale: 2,
                 useCORS: true,
-                logging: false,
                 allowTaint: true,
+                logging: false,
                 backgroundColor: '#ffffff',
                 windowHeight: container.scrollHeight,
                 windowWidth: container.scrollWidth,
-                onclone: (document) => {
-                    const images = document.querySelectorAll('img');
-                    return Promise.all(
-                        Array.from(images).filter(img => !img.complete).map(img => {
-                            return new Promise(resolve => {
-                                img.onload = resolve;
-                                img.onerror = resolve;
-                            });
-                        })
-                    );
+                // 图片处理选项
+                imageTimeout: 15000,
+                removeContainer: false,
+                onclone: (document, element) => {
+                    // 在克隆文档中确保所有图片可见
+                    const clonedImages = element.querySelectorAll('img');
+                    clonedImages.forEach(img => {
+                        img.style.display = 'block';
+                        img.style.maxWidth = '100%';
+                        img.style.height = 'auto';
+                    });
                 }
             });
 
+            // 移除临时样式
             document.getElementById('pdfStyle')?.remove();
             if (nav) nav.style.display = '';
 
+            // 生成 PDF
             const imgData = canvas.toDataURL('image/png', 1.0);
             const pdf = new jspdf.jsPDF('p', 'mm', 'a4');
 
@@ -1365,10 +1520,11 @@
 
         } catch (error) {
             console.error('导出失败:', error);
-            alert('导出失败，请重试或检查控制台错误信息。');
+            alert('导出失败，请重试。错误信息：' + error.message);
         } finally {
             btn.classList.remove('loading');
             btn.disabled = false;
+            hideProgress();
         }
     }
 
@@ -1387,6 +1543,7 @@
             errorMsg.classList.add('show');
             passwordInput.value = '';
             passwordInput.focus();
+            // 3秒后自动清除错误提示
             setTimeout(() => {
                 errorMsg.classList.remove('show');
             }, 3000);
@@ -1396,7 +1553,7 @@
     // 取消
     cancelBtn.addEventListener('click', hidePasswordModal);
 
-    // 回车确认
+    // 回车确认 / ESC取消
     passwordInput.addEventListener('keydown', function(e) {
         if (e.key === 'Enter') {
             confirmBtn.click();
