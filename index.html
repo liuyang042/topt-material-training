@@ -8,12 +8,7 @@
     <link rel="preconnect" href="https://fonts.gstatic.com" crossorigin>
     <link href="https://fonts.googleapis.com/css2?family=Inter:opsz,wght@14..32,400;14..32,500;14..32,600;14..32,700&display=swap" rel="stylesheet">
     <style>
-        * {
-            margin: 0;
-            padding: 0;
-            box-sizing: border-box;
-        }
-
+        * { margin: 0; padding: 0; box-sizing: border-box; }
         body {
             font-family: 'Inter', -apple-system, BlinkMacSystemFont, sans-serif;
             background-color: #f6f8fc;
@@ -21,7 +16,6 @@
             padding: 2rem 1.5rem;
             line-height: 1.6;
         }
-
         .container {
             max-width: 1300px;
             margin: 0 auto;
@@ -29,9 +23,7 @@
             border-radius: 40px;
             box-shadow: 0 30px 60px -20px rgba(0, 20, 40, 0.25);
             padding: 2.5rem 2.8rem;
-            transition: all 0.2s ease;
         }
-
         .header {
             border-bottom: 2px solid #eef2f7;
             padding-bottom: 1.75rem;
@@ -41,7 +33,6 @@
             justify-content: space-between;
             align-items: flex-end;
         }
-
         .header-left h1 {
             font-size: 2.4rem;
             font-weight: 700;
@@ -52,7 +43,6 @@
             background-clip: text;
             margin-bottom: 0.2rem;
         }
-
         .header-left .subhead {
             font-size: 1rem;
             font-weight: 500;
@@ -63,13 +53,7 @@
             border-radius: 30px;
             letter-spacing: 0.3px;
         }
-
-        .header-right {
-            display: flex;
-            gap: 0.8rem;
-            flex-wrap: wrap;
-        }
-
+        .header-right { display: flex; gap: 0.8rem; flex-wrap: wrap; }
         .badge {
             background: #eef3fa;
             padding: 0.5rem 1.1rem;
@@ -77,23 +61,12 @@
             font-size: 0.8rem;
             font-weight: 600;
             color: #1e3b5c;
-            letter-spacing: 0.3px;
             display: inline-flex;
             align-items: center;
             gap: 6px;
             border: 1px solid #dae2ed;
         }
-
-        .badge i {
-            font-style: normal;
-            background: #1f4b6e;
-            color: white;
-            border-radius: 30px;
-            padding: 0 8px;
-            font-size: 0.7rem;
-            line-height: 1.6;
-        }
-
+        .badge i { font-style: normal; background: #1f4b6e; color: white; border-radius: 30px; padding: 0 8px; font-size: 0.7rem; line-height: 1.6; }
         .toc {
             background: #f2f6fe;
             border-radius: 28px;
@@ -105,51 +78,12 @@
             gap: 1.2rem 2.5rem;
             border: 1px solid #e3ebf6;
         }
-
-        .toc-title {
-            font-weight: 700;
-            font-size: 1.1rem;
-            color: #12344a;
-            letter-spacing: 0.5px;
-            display: flex;
-            align-items: center;
-            gap: 10px;
-        }
-
-        .toc-title span {
-            background: #1f4b6e;
-            color: white;
-            padding: 0 12px;
-            border-radius: 40px;
-            font-size: 0.8rem;
-            line-height: 1.8;
-        }
-
-        .toc-list {
-            display: flex;
-            flex-wrap: wrap;
-            gap: 0.8rem 1.8rem;
-            list-style: none;
-        }
-
-        .toc-list li {
-            font-weight: 500;
-            font-size: 0.95rem;
-            color: #1a3c57;
-            position: relative;
-        }
-
-        .toc-list li::before {
-            content: "▹";
-            color: #3773a8;
-            margin-right: 6px;
-            font-weight: 700;
-        }
-
-        .section {
-            margin-bottom: 3.2rem;
-        }
-
+        .toc-title { font-weight: 700; font-size: 1.1rem; color: #12344a; display: flex; align-items: center; gap: 10px; }
+        .toc-title span { background: #1f4b6e; color: white; padding: 0 12px; border-radius: 40px; font-size: 0.8rem; line-height: 1.8; }
+        .toc-list { display: flex; flex-wrap: wrap; gap: 0.8rem 1.8rem; list-style: none; }
+        .toc-list li { font-weight: 500; font-size: 0.95rem; color: #1a3c57; position: relative; }
+        .toc-list li::before { content: "▹"; color: #3773a8; margin-right: 6px; font-weight: 700; }
+        .section { margin-bottom: 3.2rem; }
         .section-title {
             font-size: 1.9rem;
             font-weight: 700;
@@ -162,40 +96,9 @@
             align-items: center;
             gap: 12px;
         }
-
-        .section-title .num {
-            background: #1f4b6e;
-            color: white;
-            font-size: 1.2rem;
-            font-weight: 600;
-            padding: 0.1rem 1rem;
-            border-radius: 40px;
-        }
-
-        .subsection {
-            margin-top: 2.2rem;
-            padding-left: 0.5rem;
-        }
-
-        .subsection h3 {
-            font-size: 1.35rem;
-            font-weight: 600;
-            color: #1d3d5c;
-            margin-bottom: 0.8rem;
-            display: flex;
-            align-items: center;
-            gap: 12px;
-        }
-
-        .subsection h3 .step-badge {
-            background: #e2ebf6;
-            padding: 0.2rem 1rem;
-            border-radius: 50px;
-            font-size: 0.8rem;
-            font-weight: 600;
-            color: #1a4a72;
-        }
-
+        .section-title .num { background: #1f4b6e; color: white; font-size: 1.2rem; font-weight: 600; padding: 0.1rem 1rem; border-radius: 40px; }
+        .subsection { margin-top: 2.2rem; padding-left: 0.5rem; }
+        .subsection h3 { font-size: 1.35rem; font-weight: 600; color: #1d3d5c; margin-bottom: 0.8rem; display: flex; align-items: center; gap: 12px; }
         .step-desc {
             background: #f8faff;
             padding: 1.2rem 1.8rem;
@@ -205,7 +108,6 @@
             font-weight: 500;
             color: #1d3a53;
         }
-
         .note-box {
             background: #fcf4e8;
             border-radius: 20px;
@@ -214,11 +116,7 @@
             border-left: 6px solid #d99e4a;
             color: #5a401f;
         }
-
-        .note-box strong {
-            color: #a8692b;
-        }
-
+        .note-box strong { color: #a8692b; }
         .img-grid {
             display: flex;
             flex-wrap: wrap;
@@ -226,7 +124,6 @@
             margin: 1.5rem 0 1.2rem 0;
             align-items: flex-start;
         }
-
         .img-card {
             background: #f1f6fd;
             border-radius: 20px;
@@ -235,10 +132,8 @@
             border: 1px solid #e2ebf6;
             flex: 1 1 200px;
             min-width: 160px;
-            transition: transform 0.1s ease;
             text-align: center;
         }
-
         .img-card img {
             width: 100%;
             height: auto;
@@ -247,7 +142,6 @@
             background: white;
             display: block;
         }
-
         .img-card .img-caption {
             font-size: 0.75rem;
             font-weight: 500;
@@ -258,7 +152,6 @@
             display: inline-block;
             margin-top: 6px;
         }
-
         .img-card .code-tag {
             font-family: 'Inter', monospace;
             background: #e7eff9;
@@ -268,26 +161,14 @@
             font-weight: 600;
             color: #004080;
         }
-
-        .rule-list {
-            list-style: none;
-            margin: 1rem 0;
-        }
-
+        .rule-list { list-style: none; margin: 1rem 0; }
         .rule-list li {
             padding: 0.4rem 0 0.4rem 1.8rem;
             background: url('data:image/svg+xml;utf8,<svg xmlns="http://www.w3.org/2000/svg" width="16" height="16" viewBox="0 0 24 24" fill="none" stroke="%233775ac" stroke-width="2"><path d="M20 6L9 17l-5-5"/></svg>') left center no-repeat;
             background-size: 18px;
             margin-bottom: 0.2rem;
         }
-
-        .divider-light {
-            margin: 2.2rem 0 1.8rem 0;
-            border: 0;
-            height: 1px;
-            background: linear-gradient(to right, #dbe3ed, transparent);
-        }
-
+        .divider-light { margin: 2.2rem 0 1.8rem 0; border: 0; height: 1px; background: linear-gradient(to right, #dbe3ed, transparent); }
         .footer-note {
             margin-top: 2.8rem;
             font-size: 0.9rem;
@@ -299,7 +180,6 @@
             border: 1px solid #d5e0ed;
             font-weight: 500;
         }
-
         @media (max-width: 780px) {
             .container { padding: 1.8rem; }
             .header { flex-direction: column; align-items: flex-start; gap: 0.8rem; }
@@ -308,11 +188,7 @@
             .img-grid { flex-direction: column; }
             .section-title { font-size: 1.5rem; }
         }
-
-        @media (max-width: 480px) {
-            body { padding: 0.8rem; }
-            .container { padding: 1.2rem; border-radius: 28px; }
-        }
+        @media (max-width: 480px) { body { padding: 0.8rem; } .container { padding: 1.2rem; border-radius: 28px; } }
     </style>
 </head>
 <body>
