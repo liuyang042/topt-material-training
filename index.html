@@ -3,198 +3,347 @@
 <head>
     <meta charset="UTF-8">
     <meta name="viewport" content="width=device-width, initial-scale=1.0">
-    <title>TOPT · 物料主数据操作指引 | 培训教材</title>
+    <title>TOPT · 创建纬编物料主数据 · 培训教材</title>
+    <!-- 使用 Inter 字体，提升现代感与可读性 -->
     <link rel="preconnect" href="https://fonts.googleapis.com">
     <link rel="preconnect" href="https://fonts.gstatic.com" crossorigin>
     <link href="https://fonts.googleapis.com/css2?family=Inter:opsz,wght@14..32,400;14..32,500;14..32,600;14..32,700&display=swap" rel="stylesheet">
     <style>
-        * { margin: 0; padding: 0; box-sizing: border-box; }
+        /* 全局重置与基础样式 */
+        * {
+            margin: 0;
+            padding: 0;
+            box-sizing: border-box;
+        }
+
         body {
             font-family: 'Inter', -apple-system, BlinkMacSystemFont, sans-serif;
-            background-color: #f6f8fc;
+            background: #f4f7fb;
             color: #1e2a41;
             padding: 2rem 1.5rem;
             line-height: 1.6;
         }
+
         .container {
             max-width: 1300px;
             margin: 0 auto;
             background: #ffffff;
             border-radius: 40px;
-            box-shadow: 0 30px 60px -20px rgba(0, 20, 40, 0.25);
-            padding: 2.5rem 2.8rem;
+            box-shadow: 0 25px 50px -12px rgba(0, 20, 40, 0.25);
+            padding: 2.8rem 3rem;
+            transition: all 0.2s ease;
         }
+
+        /* 头部区域 */
         .header {
             border-bottom: 2px solid #eef2f7;
-            padding-bottom: 1.75rem;
+            padding-bottom: 1.8rem;
             margin-bottom: 2.5rem;
             display: flex;
             flex-wrap: wrap;
             justify-content: space-between;
             align-items: flex-end;
         }
+
         .header-left h1 {
-            font-size: 2.4rem;
+            font-size: 2.6rem;
             font-weight: 700;
             letter-spacing: -0.02em;
             background: linear-gradient(145deg, #0b2b4a, #1f4b6e);
             -webkit-background-clip: text;
             -webkit-text-fill-color: transparent;
             background-clip: text;
-            margin-bottom: 0.2rem;
+            margin-bottom: 0.3rem;
         }
+
         .header-left .subhead {
             font-size: 1rem;
             font-weight: 500;
             color: #4f6a85;
             background: #eaf0f8;
             display: inline-block;
-            padding: 0.2rem 1rem;
+            padding: 0.25rem 1.2rem;
             border-radius: 30px;
             letter-spacing: 0.3px;
         }
-        .header-right { display: flex; gap: 0.8rem; flex-wrap: wrap; }
+
+        .header-right {
+            display: flex;
+            gap: 0.8rem;
+            flex-wrap: wrap;
+        }
+
         .badge {
             background: #eef3fa;
-            padding: 0.5rem 1.1rem;
+            padding: 0.5rem 1.2rem;
             border-radius: 40px;
             font-size: 0.8rem;
             font-weight: 600;
             color: #1e3b5c;
+            letter-spacing: 0.3px;
             display: inline-flex;
             align-items: center;
             gap: 6px;
             border: 1px solid #dae2ed;
         }
-        .badge i { font-style: normal; background: #1f4b6e; color: white; border-radius: 30px; padding: 0 8px; font-size: 0.7rem; line-height: 1.6; }
+
+        .badge i {
+            font-style: normal;
+            background: #1f4b6e;
+            color: white;
+            border-radius: 30px;
+            padding: 0 10px;
+            font-size: 0.7rem;
+            line-height: 1.8;
+        }
+
+        /* 目录 */
         .toc {
             background: #f2f6fe;
             border-radius: 28px;
-            padding: 1.8rem 2.2rem;
-            margin-bottom: 2.8rem;
+            padding: 1.5rem 2.2rem;
+            margin-bottom: 3rem;
             display: flex;
             flex-wrap: wrap;
             align-items: center;
-            gap: 1.2rem 2.5rem;
+            gap: 1rem 2.5rem;
             border: 1px solid #e3ebf6;
         }
-        .toc-title { font-weight: 700; font-size: 1.1rem; color: #12344a; display: flex; align-items: center; gap: 10px; }
-        .toc-title span { background: #1f4b6e; color: white; padding: 0 12px; border-radius: 40px; font-size: 0.8rem; line-height: 1.8; }
-        .toc-list { display: flex; flex-wrap: wrap; gap: 0.8rem 1.8rem; list-style: none; }
-        .toc-list li { font-weight: 500; font-size: 0.95rem; color: #1a3c57; position: relative; }
-        .toc-list li::before { content: "▹"; color: #3773a8; margin-right: 6px; font-weight: 700; }
-        .section { margin-bottom: 3.2rem; }
+
+        .toc-title {
+            font-weight: 700;
+            font-size: 1.1rem;
+            color: #12344a;
+            display: flex;
+            align-items: center;
+            gap: 10px;
+        }
+
+        .toc-title span {
+            background: #1f4b6e;
+            color: white;
+            padding: 0 14px;
+            border-radius: 40px;
+            font-size: 0.8rem;
+            line-height: 1.8;
+        }
+
+        .toc-list {
+            display: flex;
+            flex-wrap: wrap;
+            gap: 0.6rem 2rem;
+            list-style: none;
+        }
+
+        .toc-list li {
+            font-weight: 500;
+            font-size: 0.95rem;
+            color: #1a3c57;
+        }
+
+        .toc-list li::before {
+            content: "▹";
+            color: #3773a8;
+            margin-right: 6px;
+            font-weight: 700;
+        }
+
+        /* 主章节 */
+        .section {
+            margin-bottom: 2.5rem;
+        }
+
         .section-title {
-            font-size: 1.9rem;
+            font-size: 2rem;
             font-weight: 700;
             letter-spacing: -0.01em;
             color: #0b2b4a;
-            padding-bottom: 0.4rem;
+            padding-bottom: 0.5rem;
             border-bottom: 4px solid #dce6f2;
-            margin-bottom: 2rem;
+            margin-bottom: 2.2rem;
+            display: flex;
+            align-items: center;
+            gap: 14px;
+        }
+
+        .section-title .num {
+            background: #1f4b6e;
+            color: white;
+            font-size: 1.3rem;
+            font-weight: 600;
+            padding: 0.1rem 1.2rem;
+            border-radius: 40px;
+        }
+
+        /* 子章节 / 步骤 */
+        .subsection {
+            margin-top: 2.5rem;
+            padding-left: 0.5rem;
+        }
+
+        .subsection h3 {
+            font-size: 1.5rem;
+            font-weight: 600;
+            color: #1d3d5c;
+            margin-bottom: 1rem;
             display: flex;
             align-items: center;
             gap: 12px;
         }
-        .section-title .num { background: #1f4b6e; color: white; font-size: 1.2rem; font-weight: 600; padding: 0.1rem 1rem; border-radius: 40px; }
-        .subsection { margin-top: 2.2rem; padding-left: 0.5rem; }
-        .subsection h3 { font-size: 1.35rem; font-weight: 600; color: #1d3d5c; margin-bottom: 0.8rem; display: flex; align-items: center; gap: 12px; }
+
+        .subsection h3 .step-badge {
+            background: #e2ebf6;
+            padding: 0.2rem 1.2rem;
+            border-radius: 50px;
+            font-size: 0.85rem;
+            font-weight: 600;
+            color: #1a4a72;
+        }
+
+        /* 步骤描述卡片 */
         .step-desc {
             background: #f8faff;
-            padding: 1.2rem 1.8rem;
+            padding: 1.2rem 2rem;
             border-radius: 24px;
             border-left: 6px solid #3875ac;
-            margin: 1rem 0 1.5rem 0;
+            margin: 0.8rem 0 1.5rem 0;
             font-weight: 500;
             color: #1d3a53;
         }
+
+        .step-desc .remark {
+            display: inline-block;
+            margin-top: 6px;
+            font-weight: 400;
+            background: #eaf1fa;
+            padding: 4px 16px;
+            border-radius: 30px;
+        }
+
+        /* 注意事项框 */
         .note-box {
             background: #fcf4e8;
             border-radius: 20px;
-            padding: 1.2rem 1.8rem;
-            margin: 1.2rem 0 1.8rem 0;
+            padding: 1.2rem 2rem;
+            margin: 1.5rem 0 2rem 0;
             border-left: 6px solid #d99e4a;
             color: #5a401f;
         }
-        .note-box strong { color: #a8692b; }
+
+        .note-box strong {
+            color: #a8692b;
+        }
+
+        .note-box .rule-list {
+            list-style: none;
+            margin-top: 8px;
+        }
+
+        .note-box .rule-list li {
+            padding: 0.3rem 0 0.3rem 1.8rem;
+            background: url('data:image/svg+xml;utf8,<svg xmlns="http://www.w3.org/2000/svg" width="16" height="16" viewBox="0 0 24 24" fill="none" stroke="%23d99e4a" stroke-width="2"><path d="M20 6L9 17l-5-5"/></svg>') left center no-repeat;
+            background-size: 18px;
+            margin-bottom: 0.1rem;
+        }
+
+        /* 图片网格 */
         .img-grid {
             display: flex;
             flex-wrap: wrap;
-            gap: 1.2rem 1.8rem;
-            margin: 1.5rem 0 1.2rem 0;
+            gap: 1.5rem 2rem;
+            margin: 1.8rem 0 1.5rem 0;
             align-items: flex-start;
         }
+
         .img-card {
-            background: #f1f6fd;
+            background: #f8fafc;
             border-radius: 20px;
             padding: 0.8rem 0.8rem 1rem 0.8rem;
-            box-shadow: 0 4px 10px rgba(0,0,0,0.02);
+            box-shadow: 0 4px 12px rgba(0,0,0,0.03);
             border: 1px solid #e2ebf6;
-            flex: 1 1 200px;
-            min-width: 160px;
+            flex: 1 1 220px;
+            min-width: 180px;
             text-align: center;
+            transition: box-shadow 0.2s ease;
         }
+
+        .img-card:hover {
+            box-shadow: 0 8px 20px rgba(0, 20, 40, 0.08);
+        }
+
         .img-card img {
             width: 100%;
             height: auto;
             border-radius: 14px;
-            border: 1px solid #d4e0ed;
+            border: 1px solid #dce6f2;
             background: white;
             display: block;
+            margin-bottom: 6px;
         }
+
         .img-card .img-caption {
-            font-size: 0.75rem;
+            font-size: 0.8rem;
             font-weight: 500;
             color: #1f4a6e;
             background: white;
-            padding: 0.2rem 0.5rem;
+            padding: 0.2rem 0.8rem;
             border-radius: 40px;
             display: inline-block;
-            margin-top: 6px;
+            margin-top: 4px;
         }
+
         .img-card .code-tag {
             font-family: 'Inter', monospace;
             background: #e7eff9;
-            padding: 0.1rem 0.7rem;
+            padding: 0.1rem 0.8rem;
             border-radius: 30px;
-            font-size: 0.65rem;
+            font-size: 0.7rem;
             font-weight: 600;
             color: #004080;
         }
-        .rule-list { list-style: none; margin: 1rem 0; }
-        .rule-list li {
-            padding: 0.4rem 0 0.4rem 1.8rem;
-            background: url('data:image/svg+xml;utf8,<svg xmlns="http://www.w3.org/2000/svg" width="16" height="16" viewBox="0 0 24 24" fill="none" stroke="%233775ac" stroke-width="2"><path d="M20 6L9 17l-5-5"/></svg>') left center no-repeat;
-            background-size: 18px;
-            margin-bottom: 0.2rem;
+
+        /* 分割线 */
+        .divider-light {
+            margin: 2.5rem 0 2rem 0;
+            border: 0;
+            height: 1px;
+            background: linear-gradient(to right, #dbe3ed, transparent);
         }
-        .divider-light { margin: 2.2rem 0 1.8rem 0; border: 0; height: 1px; background: linear-gradient(to right, #dbe3ed, transparent); }
+
+        /* 页脚 */
         .footer-note {
-            margin-top: 2.8rem;
+            margin-top: 3rem;
             font-size: 0.9rem;
             color: #3d5e7b;
             background: #ecf3fa;
-            padding: 1rem 1.8rem;
+            padding: 1rem 2rem;
             border-radius: 60px;
             text-align: center;
             border: 1px solid #d5e0ed;
             font-weight: 500;
         }
+
+        /* 响应式 */
         @media (max-width: 780px) {
             .container { padding: 1.8rem; }
             .header { flex-direction: column; align-items: flex-start; gap: 0.8rem; }
-            .header-left h1 { font-size: 1.9rem; }
+            .header-left h1 { font-size: 2rem; }
             .toc { flex-direction: column; align-items: flex-start; }
-            .img-grid { flex-direction: column; }
-            .section-title { font-size: 1.5rem; }
+            .img-grid { flex-direction: column; align-items: center; }
+            .section-title { font-size: 1.6rem; }
         }
-        @media (max-width: 480px) { body { padding: 0.8rem; } .container { padding: 1.2rem; border-radius: 28px; } }
+
+        @media (max-width: 480px) {
+            body { padding: 0.8rem; }
+            .container { padding: 1.2rem; border-radius: 28px; }
+            .subsection h3 { font-size: 1.2rem; flex-wrap: wrap; }
+        }
     </style>
 </head>
 <body>
 <div class="container">
 
-    <!-- HEADER -->
+    <!-- 页眉 -->
     <div class="header">
         <div class="header-left">
             <h1>🧵 TOPT · 物料主数据</h1>
@@ -202,220 +351,154 @@
         </div>
         <div class="header-right">
             <span class="badge"><i>Git</i> 部署就绪</span>
-            <span class="badge">📁 图片已加载</span>
+            <span class="badge">📁 图片已链接</span>
         </div>
     </div>
 
     <!-- 目录 -->
     <div class="toc">
-        <div class="toc-title">📋 目录 <span>4 章节</span></div>
+        <div class="toc-title">📋 目录 <span>1 章节</span></div>
         <ul class="toc-list">
             <li>一、创建纬编物料主数据</li>
-            <li>二、创建经编物料主数据</li>
-            <li>三、ECC-APO数据传输问题</li>
-            <li>四、特殊业务流程</li>
         </ul>
     </div>
 
-    <!-- ================= 一、纬编 ================= -->
+    <!-- ================= 一、纬编物料主数据 ================= -->
     <div class="section">
         <div class="section-title"><span class="num">一</span> 创建纬编物料主数据</div>
 
         <!-- 净色、花灰、印花布 -->
         <div class="subsection">
             <h3>🧺 净色 · 花灰 · 印花布</h3>
+
+            <!-- 第一步 -->
             <div class="step-desc">
-                ⚡ 第一步：使用 <strong>ZSOHCS008 新布号计算器</strong>，按布号编码规则获取新布号。
-                <span style="display:block; margin-top: 6px; font-weight:400; background:#eaf1fa; padding:4px 12px; border-radius:30px; display:inline-block;">备注：TOPT 统一用 PTL 规则 (T,S) 计算，后更改为 Z,O。USA 布号以 "1" 开头。</span>
+                ⚡ 第一步：使用 <strong>ZSOHCS008 新布号计算器</strong>，按照布号编码规则获取新的布号编码。
+                <span class="remark">备注：TOPT 创建物料号统一用 PTL 的规则 (T、S) 计算布号，然后更改为 Z、O。USA 布号编码以 "1" 开头。</span>
             </div>
             <div class="img-grid">
                 <div class="img-card">
-                    <img src="assets/1-1-1.png" alt="图1-1-1 布号编码规则">
-                    <div><span class="code-tag">规则表</span> <span class="img-caption">图 1-1-1 编码规则</span></div>
+                    <img src="https://github.com/liuyang042/topt-material-training/blob/main/assets/1-1-1.png?raw=true" alt="图1-1-1 布号编码规则">
+                    <div><span class="code-tag">规则表</span> <span class="img-caption">图 1-1-1 布号编码规则</span></div>
                 </div>
                 <div class="img-card">
-                    <img src="assets/1-1-2ZSOHCS008.png" alt="图1-1-2 ZSOHCS008">
-                    <div><span class="code-tag">ZSOHCS008</span> <span class="img-caption">图 1-1-2 计算器</span></div>
+                    <img src="https://github.com/liuyang042/topt-material-training/blob/main/assets/1-1-2ZSOHCS008.png?raw=true" alt="图1-1-2 ZSOHCS008">
+                    <div><span class="code-tag">ZSOHCS008</span> <span class="img-caption">图 1-1-2 新布号计算器</span></div>
                 </div>
             </div>
 
-            <div class="step-desc" style="margin-top:0.5rem;">
-                ⚡ 第二步：使用 <strong>ZSOHVT001 · 变式表 K0010</strong> 新增布号资料（通常复制创建）。
+            <!-- 第二步 -->
+            <div class="step-desc" style="margin-top: 1.8rem;">
+                ⚡ 第二步：使用 <strong>ZSOHVT001 · 变式表 K0010</strong> 新增布号资料。
+                <span class="remark">备注：TOPT 一般通过复制的方式创建新布号资料。</span>
             </div>
             <div class="img-grid">
                 <div class="img-card">
-                    <img src="assets/1-1-32SOHV1001.png" alt="图1-1-3 ZSOHVT001">
+                    <img src="https://github.com/liuyang042/topt-material-training/blob/main/assets/1-1-3ZSOHVT001.png?raw=true" alt="图1-1-3 ZSOHVT001">
                     <div><span class="code-tag">K0010</span> <span class="img-caption">图 1-1-3 ZSOHVT001</span></div>
                 </div>
             </div>
 
-            <div class="step-desc">
+            <!-- 第三步 -->
+            <div class="step-desc" style="margin-top: 1.8rem;">
                 ⚡ 第三步：使用 <strong>ZSOHCS200C · 主数据导入</strong>
-                <span style="display:block; margin-top: 6px; background:#e6eff9; padding:4px 14px; border-radius:30px; font-weight:400;">⚠️ 注意：TORAY 物料号每年变更，纱线物料号由原料部提供。</span>
+                <span class="remark" style="background:#e6eff9;">⚠️ 注意事项：TORAY 物料号每年的物料号编码都会变更，包括纱线物料号（纱线由原料部给出物料号）。</span>
             </div>
             <div class="img-grid">
                 <div class="img-card">
-                    <img src="assets/1-1-42SOHCS200C.png" alt="图1-1-4 ZSOHCS200C">
+                    <img src="https://github.com/liuyang042/topt-material-training/blob/main/assets/1-1-4ZSOHCS200C.png?raw=true" alt="图1-1-4 ZSOHCS200C">
                     <div><span class="code-tag">导入</span><span class="img-caption">图 1-1-4 ZSOHCS200C</span></div>
                 </div>
                 <div class="img-card">
-                    <img src="assets/1-1-5.png" alt="图1-1-5 编码变更提示">
-                    <div><span class="code-tag">TORAY</span><span class="img-caption">图 1-1-5 年度更新</span></div>
+                    <img src="https://github.com/liuyang042/topt-material-training/blob/main/assets/1-1-5.png?raw=true" alt="图1-1-5 编码变更提示">
+                    <div><span class="code-tag">TORAY</span><span class="img-caption">图 1-1-5 年度更新提示</span></div>
                 </div>
             </div>
 
-            <div class="step-desc">
+            <!-- 第四步 -->
+            <div class="step-desc" style="margin-top: 1.8rem;">
                 ⚡ 第四步：使用 <strong>ZSOHPP024 · 打印板卡</strong>
             </div>
             <div class="img-grid">
                 <div class="img-card">
-                    <img src="assets/1-1-62SOHPP024.png" alt="图1-1-6 ZSOHPP024">
+                    <img src="https://github.com/liuyang042/topt-material-training/blob/main/assets/1-1-6ZSOHPP024.png?raw=true" alt="图1-1-6 ZSOHPP024">
                     <div><span class="code-tag">板卡打印</span><span class="img-caption">图 1-1-6 ZSOHPP024</span></div>
                 </div>
             </div>
         </div>
 
         <!-- 色织布特殊配置 -->
-        <div class="subsection" style="margin-top:2.8rem;">
-            <h3>🎨 色织布 · 特殊配置</h3>
-            <div class="step-desc" style="background:#f4f8ff;">
+        <div class="subsection" style="margin-top: 3.5rem; border-top: 2px dashed #e0e8f2; padding-top: 2rem;">
+            <h3>🎨 色织布物料主数据 · 特殊配置</h3>
+
+            <div class="step-desc" style="background:#f4f8ff; border-left-color: #b088c0;">
                 🔹 第一步：<strong>K0041 变式表</strong> 维护
             </div>
-            <div class="img-grid"><div class="img-card">
-                <img src="assets/1-1-9.png" alt="图1-1-9 K0041">
-                <div><span class="code-tag">K0041</span> <span class="img-caption">图 1-1-9</span></div>
-            </div></div>
+            <div class="img-grid">
+                <div class="img-card">
+                    <img src="https://github.com/liuyang042/topt-material-training/blob/main/assets/1-1-9.png?raw=true" alt="图1-1-9 K0041">
+                    <div><span class="code-tag">K0041</span> <span class="img-caption">图 1-1-9</span></div>
+                </div>
+            </div>
 
-            <div class="step-desc" style="background:#f4f8ff;">
+            <div class="step-desc" style="background:#f4f8ff; border-left-color: #b088c0;">
                 🔹 第二步：<strong>K0040 变式表</strong> 维护
             </div>
-            <div class="img-grid"><div class="img-card">
-                <img src="assets/1-1-10.png" alt="图1-1-10 K0040">
-                <div><span class="code-tag">K0040</span> <span class="img-caption">图 1-1-10</span></div>
-            </div></div>
+            <div class="img-grid">
+                <div class="img-card">
+                    <img src="https://github.com/liuyang042/topt-material-training/blob/main/assets/1-1-10.png?raw=true" alt="图1-1-10 K0040">
+                    <div><span class="code-tag">K0040</span> <span class="img-caption">图 1-1-10</span></div>
+                </div>
+            </div>
 
-            <div class="step-desc" style="background:#f4f8ff;">
+            <div class="step-desc" style="background:#f4f8ff; border-left-color: #b088c0;">
                 🔹 第三步：使用 <strong>ZSOHPP106 · 维护模数纸</strong>
-                <div style="font-weight:400; background:#e1eefa; padding:6px 14px; border-radius:30px; margin-top:8px;">
-                    📐 模数 = CPI × 间距（寸），机上穿纱必须为整数。
+                <div style="font-weight:400; background:#e1eefa; padding:6px 16px; border-radius:30px; margin-top:8px; display:inline-block;">
+                    📐 模数说明：模数 = CPI × 间距（单位寸），模数是机上穿纱的，必须是整数。
                 </div>
             </div>
             <div class="img-grid">
                 <div class="img-card">
-                    <img src="assets/1-1-11ZSOHP106.png" alt="图1-1-11 ZSOHPP106">
-                    <div><span class="code-tag">模数维护</span><span class="img-caption">图 1-1-11</span></div>
+                    <img src="https://github.com/liuyang042/topt-material-training/blob/main/assets/1-1-11ZSOHPP106.png?raw=true" alt="图1-1-11 ZSOHPP106">
+                    <div><span class="code-tag">模数维护</span><span class="img-caption">图 1-1-11 ZSOHPP106</span></div>
                 </div>
                 <div class="img-card">
-                    <img src="assets/1-1-12ZSOHP106.png" alt="图1-1-12 ZSOHPP106">
-                    <div><span class="code-tag">模数纸</span><span class="img-caption">图 1-1-12</span></div>
+                    <img src="https://github.com/liuyang042/topt-material-training/blob/main/assets/1-1-12ZSOHPP106.png?raw=true" alt="图1-1-12 ZSOHPP106">
+                    <div><span class="code-tag">模数纸</span><span class="img-caption">图 1-1-12 ZSOHPP106</span></div>
                 </div>
             </div>
 
+            <!-- 模数注意事项 -->
             <div class="note-box">
                 <strong>📌 模数注意事项：</strong>
-                <ul class="rule-list" style="margin-top:6px;">
+                <ul class="rule-list">
                     <li>排间的利用率尽量 75% 以上。</li>
-                    <li>2模1循环或3模1循环 → 预模数需为2或3的倍数（不仅仅取整）。</li>
-                    <li>超过织机最大模数 → 换自动间布号。</li>
+                    <li>有些布类组织是 2 模 1 循环或 3 模 1 循环，预模数就要是 2 或 3 的倍数（不仅仅是取整）。</li>
+                    <li>超过织机最大模数要换自动间布号。</li>
                 </ul>
             </div>
         </div>
 
         <!-- 纬编相关配置 -->
-        <div class="subsection" style="margin-top:2.2rem;">
+        <div class="subsection" style="margin-top: 3rem; border-top: 2px dashed #e0e8f2; padding-top: 2rem;">
             <h3>⚙️ 纬编物料主数据 · 相关配置</h3>
             <div class="img-grid">
                 <div class="img-card">
-                    <img src="assets/1-1-7.png" alt="图1-1-7 配置界面">
+                    <img src="https://github.com/liuyang042/topt-material-training/blob/main/assets/1-1-7.png?raw=true" alt="图1-1-7 配置界面">
                     <div><span class="code-tag">纬编配置</span><span class="img-caption">图 1-1-7</span></div>
                 </div>
                 <div class="img-card">
-                    <img src="assets/1-1-8.png" alt="图1-1-8 配置参数">
+                    <img src="https://github.com/liuyang042/topt-material-training/blob/main/assets/1-1-8.png?raw=true" alt="图1-1-8 配置参数">
                     <div><span class="code-tag">纬编参数</span><span class="img-caption">图 1-1-8</span></div>
                 </div>
             </div>
         </div>
     </div>
 
-    <hr class="divider-light">
-
-    <!-- ================= 二、经编 ================= -->
-    <div class="section">
-        <div class="section-title"><span class="num">二</span> 创建经编物料主数据</div>
-        <div class="step-desc" style="background:#f1f7fe;">
-            📌 经编物料主数据流程与纬编类似，但需注意经编专用变式表与模数规则。
-            <span style="display:block; margin-top: 8px; background:#dce8f5; padding:4px 16px; border-radius:30px; font-weight:400;">具体步骤参照纬编，使用经编专用事务代码 (如 ZSOHCS008E 等)。</span>
-        </div>
-        <div class="img-grid" style="justify-content:flex-start;">
-            <div class="img-card" style="flex: 0 1 220px;">
-                <img src="assets/1-1-1.png" alt="经编布号计算示例" style="opacity:0.7;">
-                <div><span class="code-tag">经编专用</span><span class="img-caption">布号计算示例</span></div>
-            </div>
-            <div class="img-card" style="flex: 0 1 220px;">
-                <img src="assets/1-1-10.png" alt="经编变式表示例" style="opacity:0.7;">
-                <div><span class="code-tag">K0020</span><span class="img-caption">变式表示例</span></div>
-            </div>
-        </div>
-        <div class="note-box" style="border-left-color: #3d7ea6;">
-            <strong>经编特殊提醒：</strong> 经编模数通常与纬编不同，需参考经编工艺标准。
-        </div>
-    </div>
-
-    <hr class="divider-light">
-
-    <!-- ================= 三、ECC-APO ================= -->
-    <div class="section">
-        <div class="section-title"><span class="num">三</span> ECC-APO 数据传输问题处理</div>
-        <div class="step-desc" style="background:#ecf3fa;">
-            🔄 常见问题：物料主数据在ECC与APO间不一致、传输失败、或数据延迟。
-            <ul class="rule-list" style="margin-top:10px;">
-                <li>检查 <strong>CIF 模型</strong> 是否激活</li>
-                <li>确认物料主数据扩充视图 (APO 相关)</li>
-                <li>使用 <strong>ZSOHAPOCHECK</strong> 进行一致性检查</li>
-            </ul>
-        </div>
-        <div class="img-grid" style="justify-content:flex-start;">
-            <div class="img-card" style="flex: 0 1 220px;">
-                <img src="assets/1-1-7.png" alt="CIF监控示意" style="opacity:0.7;">
-                <div><span class="code-tag">CIF</span><span class="img-caption">监控示意</span></div>
-            </div>
-            <div class="img-card" style="flex: 0 1 220px;">
-                <img src="assets/1-1-8.png" alt="错误日志示意" style="opacity:0.7;">
-                <div><span class="code-tag">APO日志</span><span class="img-caption">错误示意</span></div>
-            </div>
-        </div>
-        <div class="note-box">
-            <strong>⚡ 快速处理：</strong> 若传输失败，重新执行 <strong>ZSOHAPOSYNC</strong> 或手动修复物料主数据。
-        </div>
-    </div>
-
-    <hr class="divider-light">
-
-    <!-- ================= 四、特殊业务流程 ================= -->
-    <div class="section">
-        <div class="section-title"><span class="num">四</span> 特殊业务流程</div>
-        <div style="display: flex; flex-wrap: wrap; gap: 1.5rem;">
-            <div style="flex: 1; min-width: 200px; background:#f5f9ff; padding:1.5rem; border-radius:28px;">
-                <h4 style="display:flex; gap:10px; margin-bottom:0.8rem;">🔄 复制创建</h4>
-                <p>通过 ZSOHVT001 复制相似物料，快速创建新布号，减少重复输入。</p>
-            </div>
-            <div style="flex: 1; min-width: 200px; background:#f5f9ff; padding:1.5rem; border-radius:28px;">
-                <h4 style="display:flex; gap:10px; margin-bottom:0.8rem;">📦 批量导入</h4>
-                <p>使用 ZSOHCS200C 批量导入主数据，支持 Excel 模板 (需预先转换)。</p>
-            </div>
-            <div style="flex: 1; min-width: 200px; background:#f5f9ff; padding:1.5rem; border-radius:28px;">
-                <h4 style="display:flex; gap:10px; margin-bottom:0.8rem;">🧾 模数纸打印</h4>
-                <p>ZSOHPP106 不仅维护，还可直接打印模数纸用于车间穿纱。</p>
-            </div>
-        </div>
-        <div style="margin-top:1.2rem; background:#e3eefa; border-radius:24px; padding:1rem 1.8rem;">
-            <p style="font-weight:500;">📎 特殊流程还包括：<strong>USA 布号</strong> (以1开头) 单独管理，以及 <strong>TORAY 年度物料号</strong> 更新联动。</p>
-        </div>
-    </div>
-
+    <!-- 页脚 -->
     <div class="footer-note">
-        ✅ 培训教材 · 所有图片已匹配实际文件名，部署于 <strong>liuyang042.github.io/topt-material-training</strong>
-        <span style="display:inline-block; margin-left: 1rem; background:#1f4b6e; color:white; padding:0 1rem; border-radius:40px; font-size:0.8rem;">GitHub Pages 已就绪</span>
+        ✅ 培训教材 · 图片链接均来自 GitHub 仓库 <strong>liuyang042/topt-material-training</strong>
+        <span style="display:inline-block; margin-left: 1rem; background:#1f4b6e; color:white; padding:0 1.2rem; border-radius:40px; font-size:0.8rem;">GitHub Pages 已就绪</span>
     </div>
 
 </div>
